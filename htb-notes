@@ -1,0 +1,90 @@
+									HTB NOTES:
+						⚠️Update github for this Note's⚠️
+-----------------------------------------------------------------------------
+tool used to query DNS name servers
+dig axfr {domain ex. bank.htb} @IP ex.10.10.11.79
+
+ffuf : (fuzz faster u Fool) is a powerful tool used by penetester
+	to discover hidden files and directory on web servers
+
+Nmap: is a powerful network scanning tool
+
+sudo nmap -sC -sV -vv -oA nmap/[file-name] [ip]
+
+gobuster: a powerful directory listing tool
+	-b 404,403 used to block all of 404 and 403 error codes
+
+
+useful tool/website
+
+https://gtfobins.github.io
+
+cool command:
+	ps -eaf --forest [to list all of the proccess in a forest view :)]
+	ss -lnpt [to look at all open port :)]
+
+
+Seclists Directory:
+	/usr/share/seclists/Discovery/Web-Content
+
+nuclei
+================================================================================
+
+								Active Directory Hacking:
+
+
+/etc/hosts
+$IP DC [host-name] DC.administrator.htb administrator.htb [domain name]
+---------------------------------
+winPEASx64.exe
+
+How to use: after running evul-winrm then use winpeas to check for vulnerabilities on the target system by using the command: upload winPEASx64.exe
+------------------------------------------------------------------------
+Evil-Winrm
+How to use:
+	evil-winrm -i $IP -u username -p password
+	Ex. evil-winrm -i 10.0.0.0 -u username -p 'password'
+--------------------------------------------------------------
+using netexec:
+
+one tool to perform multiple steps of the attack chain (very fast compared to running manual commands)
+nxc $IP ftp $IP/domain-name -u username -p password
+	or smb, winrm
+nxc $IP ftp $IP/domain-name -u "username" -p "password" --rid-brute | grep SidTypeUser
+-----------------------
+nxc option $IP Example: nxc smb 10.0.0.0 
+----------------------------
+nxc ldap $IP -u username -p 'password' --share
+-------------------------------------------------
+smbclient:
+	smbclient -U username@domain //$IP/share
+	Ex. smbclient -U username@puppy.htb //10.0.0.0/DEV
+_______________________________________________
+Tool: bloodyAD
+
+bloodhound-python -u username -p 'password' -c ALL -d $domain.htb -ns $IP
+
+Toool: TargetedKerberoast.py | check github for installetion
+	a python script that prints "Kerveroast" hashes for user accounts with SPNs set.
+
+	if a user does not have an SPN:
+		sets a temporary SPN (using write access)
+		Prints the Kerberoast hash
+		Deletes the SPN after grabbing the hash
+------------------------------------------------------
+Tool: bloodyAD
+
+how to use: bloodyAD --host $host-name -d domain -u username -p 'password'
+
+Example: bloodyAD --host puppy.htb -d puppy.htb -u username -p 'password' add groupMember DEVELOPERS username
+
+use case: adding member to a particuler group
+___________________________________________________________________________
+use "chrony" if needed
+sudo ntpdate $domain.htb 
+
+
+
+
+
+================================================================================
